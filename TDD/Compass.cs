@@ -22,6 +22,10 @@ namespace TDD
 
         public Points Rotate(Points point, Directions direction)
         {
+            if (direction == Directions.Right && point == Points.North)
+            {
+                return Points.East;
+            }
             return Points.South;
         }
     }
