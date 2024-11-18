@@ -31,5 +31,51 @@ namespace TDD.Tests
 
             //Assert.Pass();
         }
+
+        [Test]
+        [TestCase(TestName = "WestToNorth_&_NorthToWest")] //Gives name in test-explorer!
+        public void Test2()
+        {
+            var compass = new Compass();
+
+            //Setup vals
+            var p = Compass.Points.West;
+            var dir = Compass.Directions.Right;
+
+            //Cal func
+            var result = compass.Rotate(p, dir);
+
+            //Check res
+            result.Should().Be(Compass.Points.North);
+
+            compass.Rotate(Compass.Points.North,Compass.Directions.Left)
+                .Should().Be(Compass.Points.West);
+        }
+
+        [Test]
+        [TestCase(TestName = "Testing palindrome")]
+        public void Test3()
+        {
+            //vals
+            String input1 = "cat", input2 = "racecar";
+
+            //Call func
+            var res1 = StringManipulator.IsPalindrome(input1);
+            var res2 = StringManipulator.IsPalindrome(input2);
+
+            //Assert res
+            res1.Should().BeFalse();
+            res2.Should().BeTrue();
+        }
+
+        [Test]
+        [TestCase(TestName = "Find longest word")]
+        public void Test4()
+        {
+
+            //assert
+            WordAnalyzer.FindLongestWord("apple banana pair").Should().Be("banana");
+            WordAnalyzer.FindLongestWord("apple banana pair").Should().NotBe("apple");
+        }
     }
 }
