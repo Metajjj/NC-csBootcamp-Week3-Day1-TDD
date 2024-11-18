@@ -30,6 +30,7 @@ namespace TDD
             var dic = new Dictionary<char,int>();
             foreach(char s in text)
             {
+                    //Fails to add if it already exists, else is sucessful and doesnt run
                 if(!dic.TryAdd(s, 1))
                 { dic[s]++; }
             }
