@@ -83,10 +83,21 @@ namespace TDD.Tests
 
         public void Test5()
         {
-
+            /*
             CalculateLetterFrequencyClass.CalculateLetterFrequency("hello").Should().Be(new Dictionary<char, int> {
                 { 'l', 2 },{'h',1},{'e', 1},{'o',1 }
-                });
+                });*/
+
+            //Vers ! needs .Equal for arrays/collections!
+            CalculateLetterFrequencyClass.CalculateLetterFrequency("hello").Should().Equal(new Dictionary<char, int> {
+
+                    //Order doesnt matter with dict!
+                { 'l', 2 },
+                {'h',1},
+                {'e', 1},
+                {'o',1 }
+                }
+            );
         }
     }
 }
