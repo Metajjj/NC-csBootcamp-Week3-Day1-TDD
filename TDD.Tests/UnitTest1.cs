@@ -11,7 +11,7 @@ namespace TDD.Tests
         }
 
         [Test]
-        [TestCase(TestName = "Rotate_NothToRight_ReturnsEast" )]
+        [TestCase(TestName = "Rotate_NothToRight_ReturnsEast")]
         public void Rotate_NothToRight_ReturnsEast()
         {
             var compass = new Compass();
@@ -48,7 +48,7 @@ namespace TDD.Tests
             //Check res
             result.Should().Be(Compass.Points.North);
 
-            compass.Rotate(Compass.Points.North,Compass.Directions.Left)
+            compass.Rotate(Compass.Points.North, Compass.Directions.Left)
                 .Should().Be(Compass.Points.West);
         }
 
@@ -82,8 +82,8 @@ namespace TDD.Tests
         [TestCase(TestName = "Calulate Letter Frequency")]
         public void Test5()
         {
-            
-            CalculateLetterFrequencyClass.CalculateLetterFrequency("hello").Should().Be(new Dictionary<char, int> {
+
+            CalculateLetterFrequencyClass.CalculateLetterFrequency("hello").Should().Equal(new Dictionary<char, int> {
                 { 'l', 2 },{'h',1},{'e', 1},{'o',1 }
                 });
 
@@ -98,6 +98,67 @@ namespace TDD.Tests
                 {'o',1 }
                 }
             );
+        }
+
+        [Test]
+        [TestCase(TestName = "Add Item")]
+        public void Test6()
+        {
+            var shopping = new ShoppingCart();
+            shopping.AddItem("apples", 1.2m);
+            shopping.AddItem("oranges", 1.80m);
+
+            shopping.CalculatTotalPrice().Should().Be(3m);
+        }
+
+        [Test]
+        [TestCase(TestName = " Apply Discount")]
+        public void Test7()
+        {
+            var shopping = new ShoppingCart();
+            shopping.AddItem("apples", 100.0m);
+            // shopping.AddItem("oranges", 1.80m);
+
+            shopping.ApplyDiscount(0.2m, "apples");
+            shopping.CalculatTotalPrice().Should().Be(80m);
+
+        }
+
+        [Test]
+        [TestCase(TestName = " Empty List")]
+
+        public void Test8()
+        {
+            var shopping = new ShoppingCart();
+
+            shopping.CalculatTotalPrice().Should().Be(0m);
+        }
+
+        [Test]
+        [TestCase(TestName = "Exceeds MAX VALUE")]
+
+        public void Test9()
+        {
+            var shopping = new ShoppingCart();
+            string itemName = "ExpensiveItem";
+            decimal price = decimal.MaxValue;
+
+            Assert.Throws<OverflowException>(() => shopping.AddItem(itemName, price + 2));
+        }
+
+        [Test]
+        [TestCase(TestName = "Negative Price")]
+
+        public void Test10()
+        {
+            var shopping = new ShoppingCart();
+            string itemName = "ExpensiveItem";
+            decimal price = -1.00m;
+
+
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => shopping.AddItem(itemName, price));
+
         }
     }
 }
