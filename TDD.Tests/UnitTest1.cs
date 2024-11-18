@@ -77,5 +77,16 @@ namespace TDD.Tests
             WordAnalyzer.FindLongestWord("apple banana pair").Should().Be("banana");
             WordAnalyzer.FindLongestWord("apple banana pair").Should().NotBe("apple");
         }
+
+        [Test]
+        [TestCase(TestName = "Calulate Letter Frequency")]
+
+        public void Test5()
+        {
+
+            CalculateLetterFrequencyClass.CalculateLetterFrequency("hello").Should().Be(new Dictionary<char, int> {
+                { 'l', 2 },{'h',1},{'e', 1},{'o',1 }
+                });
+        }
     }
 }
