@@ -16,9 +16,9 @@
             var compass = new Compass();
 
             var p = Compass.Points.North;
-            var dir = Compass.Directions.Right;
+            var dir = Compass.Directions.Left;
 
-            var result = compass.Rotate(p, dir);
+            //var result = compass.Rotate(p, dir);
         }
 
         public enum Points

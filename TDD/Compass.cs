@@ -22,11 +22,21 @@ namespace TDD
 
         public Points Rotate(Points point, Directions direction)
         {
-            if (direction == Directions.Right && point == Points.North)
+            int i = (direction == Directions.Right) ? (int)direction : -1;
+            //Works - now to add to Points enum
+
+            Points newPoint = point + i ;
+            if ( (int)newPoint > 3) { newPoint = (Points)0; }
+            else if ( (int)newPoint < 0) { newPoint = (Points)3; }
+
+
+            return newPoint;
+
+            /*if (direction == Directions.Right && point == Points.North)
             {
                 return Points.East;
             }
-            return Points.South;
+            return Points.South;*/
         }
     }
 }
