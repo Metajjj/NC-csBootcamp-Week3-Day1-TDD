@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	  <LangVersion>13</LangVersion>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -11,5 +12,13 @@
     <PackageReference Include="NUnit" Version="4.2.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Compass.Tests\Compass.Tests.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TDD\TDD.csproj" />
+	</ItemGroup>
 
 </Project>
