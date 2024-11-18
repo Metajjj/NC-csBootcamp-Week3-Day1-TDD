@@ -6,23 +6,16 @@ using System.Threading.Tasks;
 
 namespace TDD
 {
-    public class Location
+    public class Location(string name, int maxCap = 100)
     {
         public static long LocationCount;
 
         public Dictionary<Product,int> Products = new Dictionary<Product, int>();
 
-        public int MaximumCapacity { get; private set; }
+        public int MaximumCapacity { get; private set; } = maxCap;
 
-        public long LocationId { get; private set; }
-        public string Name { get; private set; }
-
-        Location(string name, int maxCap=100)
-        {
-            Name = name;
-            LocationId = ++LocationCount;
-            MaximumCapacity = maxCap;
-        }
+        public long LocationId { get; private set; } = ++LocationCount;
+        public string Name { get; private set; } = name;
 
         public void AddProductToLocation(Product product, int Qty=1)
         {
@@ -33,7 +26,7 @@ namespace TDD
                 Products[product]++;
             }
         }
-        public void RemoveProductFromLocation(Product product, int quantity=1)
+        public Product RemoveProductFromLocation(Product product, int quantity=1)
         {
             //Make it return a dict of < prod , qty > -- makes it easier when moving products!
 
@@ -44,6 +37,8 @@ namespace TDD
             }
 
             Products[product] -= quantity;
+
+            return product;
         }
     }
 }

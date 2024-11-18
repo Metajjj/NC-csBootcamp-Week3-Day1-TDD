@@ -13,6 +13,15 @@ namespace TDD
         public List<Location> WarehouseLocations = new List<Location> ();
 
 
+        public void AddLocationToWarehouse(string name)
+        {
+            WarehouseLocations.Add( new Location(name) );
+        }
+
+        public List<Location> GetLocsByName(string name)
+        {
+            return WarehouseLocations.Where(loc => { return loc.Name == name; }).ToList();
+        }
 
         public long GetTotalNumberOfProducts()
         {
@@ -104,8 +113,8 @@ namespace TDD
 
             foreach (Location location in WarehouseLocations)
             {
-                if (location.LocationId + "" != locationId)
-                { continue; }
+                /*if (location.LocationId + "" != locationId)
+                { continue; }*/
 
                 foreach (var prod in location.Products.Keys)
                 {
@@ -153,8 +162,8 @@ namespace TDD
                 AddProductToLocation(locationId,prod);
             }
         }
- 
-        private void RemoveProductsFromLocation(string LocationID, string ProductID) {
+
+        public void RemoveProductsFromLocation(string LocationID, string ProductID) {
             foreach (Location location in WarehouseLocations)
             {
                 if (location.LocationId+"" == LocationID)
@@ -169,7 +178,7 @@ namespace TDD
                 }
             }
         }
-        private int LocationCurrentCapacity(string locID)
+        public int LocationCurrentCapacity(string locID)
         {
             foreach (Location location in WarehouseLocations)
             { 
@@ -189,7 +198,7 @@ namespace TDD
         }
 
         //Move product to new location
-        private void MoveProduct(string locLeaving, string locArriving, string ProductID)
+        public void MoveProduct(string locLeaving, string locArriving, string ProductID)
         {
             Location locL=null, locA=null;
             foreach(Location location in WarehouseLocations)
@@ -199,7 +208,7 @@ namespace TDD
             }
 
                         //Grabs product of ID
-            var product = locL.Products.Where(kvp => { return kvp.Key.ProductId + "" == ProductID; }).ToList()[0];
+            var product = locL.Products.Where(kvp => { return kvp.Key.ProductId + "" == ProductID; }).ToList()[0].Key;
 
             locA.AddProductToLocation(locL.RemoveProductFromLocation(product));
 
@@ -208,7 +217,7 @@ namespace TDD
         //TODO add innate methods to cleanup so many `foreach in location` WET code
         //TODO sort statics when removing locs/classes
 
-        private void CleanLocation(string locID)
+        public void CleanLocation(string locID)
         {
             foreach (Location location in WarehouseLocations)
             {
@@ -216,7 +225,7 @@ namespace TDD
                 { location.Products.Clear(); }
             }
         }
-        private void EmptyWarehouse() {
+        public void EmptyWarehouse() {
             WarehouseLocations.Clear();
         }
     }

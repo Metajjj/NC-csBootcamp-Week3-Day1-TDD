@@ -160,5 +160,21 @@ namespace TDD.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => shopping.AddItem(itemName, price));
 
         }
+
+        [Test]
+        [TestCase(TestName = "Manipulate warehouse locs")]
+        public void Test11()
+        {
+            var warehouse = new WarehouseInventory();
+
+            warehouse.AddLocationToWarehouse("loc1");
+
+                //Check if warehouse locs update
+            //Assert.Equals(warehouse.WarehouseLocations.Count, 1);
+            warehouse.WarehouseLocations.Count().Should().Be(1);
+
+            warehouse.EmptyWarehouse();
+            warehouse.WarehouseLocations.Count().Should().Be(0);
+        }
     }
 }
