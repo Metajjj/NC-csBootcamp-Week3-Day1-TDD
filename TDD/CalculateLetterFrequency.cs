@@ -25,6 +25,15 @@ namespace TDD
                 }
             }
             return frequency;
+
+            /*optional alt method*/
+            var dic = new Dictionary<char,int>();
+            foreach(char s in text)
+            {
+                if(!dic.TryAdd(s, 1))
+                { dic[s]++; }
+            }
+            return dic;
         }
             
     }
